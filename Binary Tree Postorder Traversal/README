@@ -1,0 +1,24 @@
+leetcode Question: Binary Tree Postorder Traversal (iteration)
+Binary Tree Postorder Traversal (iteration)
+Given a binary tree, return the postorder traversal of its nodes' values.
+For example:
+Given binary tree {1,#,2,3},
+   1
+    \
+     2
+    /
+   3
+return [3,2,1].
+Note: Recursive solution is trivial, could you do it iteratively?
+Analysis:
+Classical problem,  the recursion version of the solution can be easily found by modifying here. In this post, I solved it iteratively.  Which data structure do remind us ?  Yes! Still stack!
+
+The algorithm has following steps, which is slight different from the previous question:
+(1) Push the root node into the stack.
+(2) while the stack is not empty, do:
+       if 
+          the top node is a leaf node (no left&right children), pop it.
+          or if the top node has been visited, pop it. (here we use a sign head to show the latest popped node, if the top node's child = the latest popped node, either left or right, it must has been visited.)
+       else
+          b. push the right child of the top node (if exists)
+          c. push the left child of the top node (if exists)
