@@ -81,6 +81,7 @@ public:
 **/
 
 // solution 2
+/**
 int nchoosek(int n, int k) {
   if(k==0 || n==k)
     return 1;
@@ -111,6 +112,19 @@ public:
     }
 
     return ret;
+    }
+};
+**/
+
+class Solution {
+public:
+    int climbStairs(int n) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        if (n<=2) {return n;}
+        else {
+            return climbStairs(n-1) + climbStairs(n-2);
+        }
     }
 };
 

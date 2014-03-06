@@ -22,11 +22,13 @@ public:
         TreeNode* head=root;
         while (!st.empty()){
             TreeNode* top = st.top();
+            //except the root, for other nodes, if its left or right has been visited, then we need to vist the parent.
             if ((top->left==NULL && top->right==NULL)||top->right==head || top->left==head){
                 res.push_back(top->val);
                 st.pop();
                 head = top;
             }else{
+            	// put right in the bottom of the left one in the stack. As a result, left pop first.
                 if (top->right!=NULL){st.push(top->right);}
                 if (top->left!=NULL){st.push(top->left);}
             }
