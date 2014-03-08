@@ -7,40 +7,112 @@ Given an array of integers, every element appears three times except for one. Fi
 Note:
 Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory? 
 
-trick: XOR is a good way, we can use the property that A XOR A = 0, and A XOR B XOR A = B.
 **/
 
+/**
+The most stupid way is using map to count the number of numbers
+**/
 #include <iostream>
-#include <stdlib.h> //exit(0);
+#include <map>
 
 using namespace std;
-
-class Solution {
+/**
+class Solution 
+{
 public:
-    int singleNumber(int A[], int n)
+    int singleNumber(int A[], int n) 
     {
-    	int result = A[0];
-    	//array start at 1.
-    	for (int i = 1; i < n; i++)
-    	{
-    		result = result ^ A[i];
-    	}
-    	return result;
+        map<int, int> mapping;
+        for (int i = 0; i < n; i++)
+        	mapping[A[i]]++;
+        map<int, int>::iterator iter;
+        for (iter = mapping.begin(); iter != mapping.end(); iter++)
+        {
+        	if(iter->second == 1)
+        		return iter->first;
+        }
     }
 };
+**/
 
-int main(int argc, char* argv[])
+/**
+class Solution 
 {
-	int input[11];
-	cout<<"please input 11 number"<<endl;
-	for (int i = 0; i < 11; i++)
-	{
-		cin>>input[i];
-	}
-	cout<<endl;	
+public:
+    int singleNumber(int A[], int n) 
+    {
+    	for (int k = 0; k < 16; k++)
+    	{
+    		cout<<A[k]<<"   ";
+    	}
+    	cout<<endl;
+    	int bit_cursor, bit, i, result;
+		for (bit_cursor = 0; bit_cursor < 32; bit_cursor++)
+		{
+			for (i = bit = 0; i < n; i++)
+			{
+				bit = (bit + ((A[i] >> bit_cursor) & 1)) % 3;
+			}
+			result |= (bit << bit_cursor);
+		}
+		return result;
+    }
+};
+**/
+
+class Solution {  
+public:  
+    int singleNumber(int A[], int n) {     
+        int numBins[32]={0};  
+        int res=0;  
+        for(int i=0;i<32;i++)  
+        {  
+        	cout<<endl;
+        	cout<<i<<":  "<<endl;
+            for(int j=0;j<n;j++)  
+            {  
+            	// extract the ith bit and & with 1
+                if(((A[j]>>i)&1)==1)  
+                    numBins[i]++;  
+            }  
+            res|=(numBins[i]%3)<<i;  
+        }  
+        return res;  
+    }  
+}; 
+
+
+int main()
+{
+	int a[16] = {1,2,3,4,5,6,6,5,5,6,4,3,4,3,1,1};
 	Solution sol;
-	int result = sol.singleNumber(input, 11);
+	int result;
+	result = sol.singleNumber(a, 16);
 	cout<<result<<endl;
 	return 0;
 }
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
