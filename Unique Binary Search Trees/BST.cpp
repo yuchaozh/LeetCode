@@ -12,6 +12,7 @@ Given n = 3, there are a total of 5 unique BST's.
     /     /       \                 \
    2     1         2                 3
    
+recursive tricky:
 n=3: (2,0) + (1,1) + (0,2)
 n=4: (3,0) + (2,1) + (1,2) + (0,3)
 n=5: (4,0) + (3,1) + (2,2) + (1,3) + (0, 4) 
@@ -35,6 +36,25 @@ public:
     }
 };
 
+//DP
+class Solution {
+public:
+    int numTrees(int n) {
+        vector<int> table(n+1,0);
+        if (n==0){return 0;}
+        table[0]=1;
+        table[1]=1;
+        table[2]=2;
+        for (int i=3;i<=n;i++){
+            int res=0;
+            for (int j=0;j<=i-1;j++){
+                res = res+ table[j]*table[i-1-j];
+            }
+            table[i]=res;
+        }
+        return table[n];   
+    }
+};
 
 
 
