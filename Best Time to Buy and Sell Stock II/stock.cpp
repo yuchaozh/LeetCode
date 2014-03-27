@@ -13,6 +13,7 @@ prof = 3 + 5 + 7 + 9  = 24.
 if the order goes down, then it - itself == 0. means not buy the stock
 **/
 
+// solution 1: find the biggest and smallest number in one asecending order
 class Solution 
 {
 public:
@@ -22,6 +23,7 @@ public:
         if (prices.size() > 1)
         {
         	int cursor = prices[0];
+        	// there are two cursors, begin from 1 here
         	for (int i = 1; i < prices.size(); i++)
         	{
         		if (prices[i] > prices[i - 1])
@@ -38,3 +40,29 @@ public:
         return result;
     }
 };
+
+// solution 2: add difference of all numbers within an asecending order
+class Solution 
+{
+public:
+    int maxProfit(vector<int> &prices) 
+    {
+        int result = 0;
+		if (prices.size() < 2)
+		{
+			return result; 
+		}
+		else
+		{
+			for (int i = 1; i < prices.size(); i++)
+			{
+				if (prices[i] > prices[i - 1])
+				{
+					result += prices[i] - prices[i - 1];
+				}
+			}
+		}
+		return result;
+    }
+};
+
