@@ -46,7 +46,7 @@ using namespace std;
 class Solution 
 {
 public:
-	int maxProfit(vector<int> prices) 
+	int maxProfit(vector<int> &prices) 
     {
     	int result = 0;
     	if (prices.size() > 1)

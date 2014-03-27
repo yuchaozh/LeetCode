@@ -10,6 +10,8 @@ Given binary tree {1,#,2,3},
    3
 return [3,2,1].
 Note: Recursive solution is trivial, could you do it iteratively?
+
+
 Analysis:
 Classical problem,  the recursion version of the solution can be easily found by modifying here. In this post, I solved it iteratively.  Which data structure do remind us ?  Yes! Still stack!
 
