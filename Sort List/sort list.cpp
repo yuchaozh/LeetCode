@@ -28,9 +28,91 @@ See the code below for details. In this code, the pointer to the pointer (refere
 class Solution 
 {
 public:
+		ListNode *mergeTwoLists(ListNode *l1, ListNode *l2) 
+    {
+    	ListNode* res = new ListNode(0);
+        ListNode* cursor = res;
+        while (true)
+        {
+        	if (!l1)
+        	{
+        		cursor->next = l2;
+        		// use break to jump out of the while loop
+        		break;
+        	}
+        	if (!l2)
+        	{
+        		cursor->next = l1;
+        		break;
+        	}
+        	if (l2->val < l1->val)
+        	{
+        		cursor->next = l2;
+        		l2 = l2->next;
+        	}
+        	else
+        	{
+        		cursor->next = l1;
+        		l1 = l1->next;
+        	}
+        	cursor = cursor->next;
+        }
+        return res->next;
+    }
+    
+    void split(ListNode* head, ListNode** first, ListNode** second)
+    {
+    		ListNode* current;
+    		ListNode* previous;
+    		
+    		// no node or only has one node
+    		if (head == NULL || head->next == NULL)
+    		{
+    				*first = head;
+    				*second = NULL;
+    		}
+    		else
+    		{
+    				current = previous = head;
+    				while (current != NULL && current->next != NULL)
+    				{
+    						current = current->next->next;
+    						// only has two nodes
+    						if (current == NULL)
+    						{
+    								break;
+    						}
+    						previous = previous->next;
+    				}
+    				*first = head;
+    				//head->next = NULL;
+    				*second = previous->next;
+    				// split
+    				previous->next = NULL;
+    		}
+    }
+    
+    void mergeSort(ListNode** headRef)
+    {
+    		ListNode* head = *headRef;
+    		ListNode* a;
+    		ListNode* b;
+    		
+    		if (head == NULL || head->next == NULL)
+    				return;
+    		
+    		split(head, &a, &b);
+    		mergeSort(&a);
+    		mergeSort(&b);
+    		
+    		*headRef = mergeTwoLists(a, b);
+    
+    }
+
     ListNode *sortList(ListNode *head) 
     {
-        
+        mergeSort(&head);
+        return head;
     }
 };
 
