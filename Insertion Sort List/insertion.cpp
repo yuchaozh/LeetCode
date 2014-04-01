@@ -28,6 +28,7 @@ public:
         head = cursor;
         ListNode* current;
         
+        // more than one node, at least two nodes
         while (cursor->next != NULL)
         {
         		current = head;
