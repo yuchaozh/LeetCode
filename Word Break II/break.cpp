@@ -1,0 +1,35 @@
+/**
+
+ Given a string s and a dictionary of words dict, add spaces in s to construct a sentence where each word is a valid dictionary word.
+
+Return all such possible sentences.
+
+For example, given
+s = "catsanddog",
+dict = ["cat", "cats", "and", "sand", "dog"].
+
+A solution is ["cats and dog", "cat sand dog"]. 
+
+ Analysis:
+
+For the "Return all" problems, usually DFS or BFS will work well.
+In this problem, a DFS with a simple cutting edge condition will pass all the test cases.
+However, I think definitely my solution is not an optimal one. Better idea will be updated later.
+For the first two trail, I used different DFS scheme but all failed the last test case. (see the commented part of the code below.)
+
+It seems that the last test case will cause the "time exceed" error:
+Last executed input:	"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab", ["a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"]
+All the searching rounds in this case are not needed because this string has no solutions (last "b" cannot match any word in dict).
+
+So, according to the idea of the previous question word break I,  after get the index array mp, a initial test is provided and if there is no possible solution, no searching is needed and return the empty vector.
+
+**/
+
+class Solution 
+{
+public:
+    vector<string> wordBreak(string s, unordered_set<string> &dict) 
+    {
+        
+    }
+};
