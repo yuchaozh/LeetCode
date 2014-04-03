@@ -55,9 +55,25 @@ public:
 class Solution 
 {
 public:
+	int se(int st, int ed, int A[], int target)
+	{
+		if (st > ed)
+			return st;
+		else
+		{
+			int mid = st + (ed - st) / 2;
+			if (A[mid] == target)
+				return mid;
+			if (A[mid] < target)
+				return se(mid + 1, ed, A, target);
+			if (A[mid] > target)
+				return se(st, mid - 1, A, target);
+		}
+	}
+
     int searchInsert(int A[], int n, int target) 
     {
-    	
+    	return se(0, n - 1, A, target);
     }
 };
 	
