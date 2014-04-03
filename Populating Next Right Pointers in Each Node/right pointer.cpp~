@@ -63,9 +63,64 @@ The space needed is less than 2^i-1;
  * };
  */
  
-/*
+/**
+* DFS function
+**/
+class Solution 
+{
+public:
+	void dfs(TreeLinkNode* root)
+	{
+		if (root == NULL) {return;}
+		
+		if (root->next == NULL)
+		{
+			if (root->right)
+				root->right->next = NULL;
+			if (root->left)
+				root->left->next = root->right;
+		}
+		else
+		{
+			TreeLinkNode* p = root->next;
+			TreeLinkNode* q = NULL;
+			while(P)
+			{
+				if (p->left) 
+				{
+					q = p->left;
+					break;
+				}
+				if (p->right)
+				{
+					q = p->right;
+					break;
+				}
+				p = p->next;
+			}
+			if (root->right)
+				root->right->next = q;
+			if (root->left && root->right)
+				root->left->next = root->right;
+			if (root->left && !root->right)
+				root->left->next = q;				
+		}
+		
+		dfs(root->right);
+		dfs(root->left);
+	}
+    void connect(TreeLinkNode *root) 
+    {
+        if (!root)
+        	return;
+        root->next = NULL;
+       	dfs(root);
+    }
+};
+ 
+/**
 * BFS function
-*/
+**/
 class Solution 
 {
 public:
