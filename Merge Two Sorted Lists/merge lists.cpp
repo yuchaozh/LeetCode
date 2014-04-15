@@ -28,6 +28,7 @@ class Solution
 public:
     ListNode *mergeTwoLists(ListNode *l1, ListNode *l2) 
     {
+    	// build a new head, which can make changement of pointers easily
     	ListNode* res = new ListNode(0);
         ListNode* cursor = res;
         while (true)
@@ -55,6 +56,7 @@ public:
         	}
         	cursor = cursor->next;
         }
+        // return the list after the head
         return res->next;
     }
 };
