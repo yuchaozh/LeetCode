@@ -15,8 +15,45 @@ Just when A[mid]==A[st], we cannot say the previous part is ordered, then we jus
 class Solution 
 {
 public:
+	bool se(int st, int ed, int target, int A[])
+	{
+		if (st > ed) {return false;}
+		else
+		{
+			int mid = st + (ed - st) / 2;
+			if (A[mid] == target) {return true;}
+			if (A[mid] > A[st])
+			{
+				if (target <= A[mid] && target >= A[st])
+				{
+					return se(st, mid - 1, target, A);
+				}
+				else
+				{
+					return se(mid + 1, ed, target, A);
+				}
+			}
+			if (A[mid] < A[st])
+			{
+				if (target <= A[mid] || target >= A[st])
+				{
+					return se(st, mid - 1, target, A);
+				}
+				else
+				{
+					return se(mid + 1, ed, target, A);
+				}
+			}
+			if (A[mid] == A[st])
+			{
+				return se(st + 1, ed, target, A);
+			}
+			return false;
+		}
+	}
     bool search(int A[], int n, int target) 
     {
-        
+        if (n == 0) {return false;}
+        return se(0, n - 1, target, A);
     }
 };
