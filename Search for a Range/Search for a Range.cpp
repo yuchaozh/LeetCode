@@ -27,15 +27,19 @@ public:
         int mid = st + (ed - st) / 2;
         if (A[mid] == target)
         {
+          // toward left
           if (left)
           {
+            // if mid == 0 or meet the edge
             if (mid == 0 || A[mid - 1] < A[mid]) 
               return mid;
             else
               return search(A, n, target, st, mid - 1, left);
           }
+          // toward right
           if (!left)
           {
+            // if mid is the last one or meet the edge
             if (mid == n - 1 || A[mid + 1] > A[mid])
               return mid;
             else
