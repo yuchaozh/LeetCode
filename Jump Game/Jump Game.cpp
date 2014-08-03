@@ -38,7 +38,8 @@ public:
           {
             // i: current step plus potential steps
             m = max(m, A[i] + i);
-            if (m > n - 1) {return true;}
+            // jump space (from first to last), so n - 1
+            if (m >= n - 1) {return true;}
           }
         }
         return false;
