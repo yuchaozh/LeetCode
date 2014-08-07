@@ -53,7 +53,7 @@ public:
         }
     }
 
-    vector<vector<int> > combinationSum(vector<int> &candidates, int target, vector<vector<int> > &res, vector<int> &r, int i) 
+    vector<vector<int> > combinationSum(vector<int> &candidates, int target) 
     {
         vector<vector<int> > res;
         if (candidates.size() == 0) {return res;}
