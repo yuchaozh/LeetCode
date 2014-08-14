@@ -42,7 +42,7 @@ public:
         if (ist > ied) {return NULL;}
         TreeNode* res = new TreeNode(postorder[ped]); // the last element in postorder is the "root" of current subtree
         int mid;
-        for (int i = ist; i < ied; i++)
+        for (int i = ist; i <= ied; i++)
         {
             if (inorder[i] == res->val) 
             {
@@ -51,7 +51,8 @@ public:
             }
         }
         res->right = ct(inorder, postorder, mid + 1, ied, ped - 1);
-        res->left = ct(inorder, postorder, ist, mid - 1, ped - 1);
+        // ped - 1 - ied + mid is trick
+        res->left = ct(inorder, postorder, ist, mid - 1, ped - 1 - ied + mid);
         return res;
     }
 
